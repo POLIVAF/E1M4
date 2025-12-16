@@ -39,5 +39,5 @@ El trabajo deberá ser entregado a través de un repositorio público en GitHub.
 
 se dejan los repo y la github page: 
 
-## [E1M4] REPOCITORIO
-## [E1M4] PAGE
+## [E1M4] (https://github.com/POLIVAF/E1M4.git) REPOCITORIO
+## [E1M4] (https://polivaf.github.io/E1M4/) PAGE
