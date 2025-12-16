@@ -13,35 +13,49 @@ class Libro {
 }
 
 const inventario = [];
-const btnAgregar = document.getElementById("agregarLibroBtn");
 
-btnAgregar.addEventListener("click", () => {
+function iniciarCargaLibros() {
   let continuar = true;
 
-  do {
-    const titulo = prompt("Ingrese el título del libro:");
-    if (!titulo) break;
+  while (continuar) {
+    // Título
+    let titulo = "";
+    while (!titulo) {
+      titulo = prompt("Ingrese el título del libro:");
+      if (titulo === null) return; // cancelar
+      if (!titulo) alert("Debes ingresar un título para continuar.");
+    }
 
-    const autor = prompt("Ingrese el autor del libro:");
-    if (!autor) break;
+    // Autor
+    let autor = "";
+    while (!autor) {
+      autor = prompt("Ingrese el autor del libro:");
+      if (autor === null) return; // cancelar
+      if (!autor) alert("Debes ingresar un autor para continuar.");
+    }
 
-    let estado = prompt("Ingrese el estado del libro (Disponible / Prestado):");
-    if (!estado) break;
+    // Estado
+    let estado = "";
+    while (!estado) {
+      estado = prompt("Ingrese el estado del libro (Disponible / Prestado):");
+      if (estado === null) return; // cancelar
+      estado = estado.toLowerCase() === "prestado" ? "Prestado" : "Disponible";
+    }
 
-    // Normalizar estado
-    estado = estado.toLowerCase() === "prestado" ? "Prestado" : "Disponible";
-
+    // Crear libro y agregar
     const nuevoLibro = new Libro(titulo, autor, estado);
     inventario.push(nuevoLibro);
 
     alert(`Libro "${nuevoLibro.titulo}" agregado correctamente.`);
     nuevoLibro.mostrarInfo();
 
-    // Preguntar si quiere agregar otro libro
     continuar = confirm("¿Desea agregar otro libro?");
-  } while (continuar);
+  }
 
-  // Mostrar inventario completo al final
   console.log("--- Inventario completo ---");
   inventario.forEach(libro => libro.mostrarInfo());
-});
+}
+
+// Enlazar evento al botón
+const btnAgregar = document.getElementById("agregarLibroBtn");
+btnAgregar.addEventListener("click", iniciarCargaLibros);
